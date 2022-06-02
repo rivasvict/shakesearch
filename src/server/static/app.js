@@ -12,11 +12,9 @@ const Controller = {
 
   updateTable: (results) => {
     const table = document.getElementById("table-body");
-    const rows = [];
-    for (let result of results) {
-      rows.push(`<tr>${result}<tr/>`);
-    }
-    table.innerHTML = rows;
+    table.innerHTML = results.reduce((accumulated, result) => {
+      return `${accumulated}<tr><td>${result}</td></tr>`;
+    }, '');
   },
 };
 
