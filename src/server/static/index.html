@@ -5,24 +5,40 @@
   <meta charset="utf-8">
   <title>ShakeSearch</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extedn: {
+          fontFamily: {
+            'Amazon-Ember-Regular': ['AmazonEmber'],
+            'Amazon-Ember-Bold': ['AmazonEmber-Bold']
+          }
+        },
+        fontFamily: {
+          'sans': ['AmazonEmber-Light'],
+        }
+      }
+    }
+  </script>
   <link rel="stylesheet" href="search.css">
   <meta name="theme-color" content="#fafafa">
 </head>
 
 <body>
+  <section id="main-section" class="font-sans">
     <p>
         <form id="form">
-            <label for="query">Query</label>
             <input type="text" id="query" name="query">
-            <button type="submit">Search</button>
         </form>
     </p>
-    <p>Number of results: <b id="resutls-count"></b></p>
+    <p >Number of results: <b id="resutls-count"></b></p>
     <p>
         <table id="table">
           <tbody id="table-body"></tbody>
         </table>
     </p>
+  </section>
   <script src="app.js"></script>
 </body>
 
