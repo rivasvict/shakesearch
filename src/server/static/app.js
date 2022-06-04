@@ -5,17 +5,26 @@ const Controller = {
     const data = Object.fromEntries(new FormData(form));
     const response = fetch(`/search?q=${data.query}`).then((response) => {
       response.json().then((results) => {
-        Controller.updateTable(results);
+        if (results.length) {
+          Controller.updateTable({ results, searchTerm: data.query, numberOfResults: results.length });
+        }
       });
     });
   },
 
-  updateTable: (results) => {
+  updateTable: ({ results, searchTerm, numberOfResults }) => {
     const table = document.getElementById("table-body");
     table.innerHTML = results.reduce((accumulated, result) => {
-      return `${accumulated}<tr><td>${result}</td></tr>`;
+      const withHighlightedResult = Controller.highlightTerm({ text: result, term: searchTerm });
+      return `${accumulated}<tr><td>${withHighlightedResult}</td></tr>`;
     }, '');
+    const numberOfResultsDisplay = document.getElementById("resutls-count");
+    numberOfResultsDisplay.innerHTML = numberOfResults;
   },
+
+  highlightTerm: ({ text, term }) => {
+    return text.replace(new RegExp(term, 'g'), `<span class="font-[AmazonEmber-Bold]">${term}</span>`);
+  }
 };
 
 const form = document.getElementById("form");

@@ -26,13 +26,13 @@
 </head>
 
 <body>
-  <section id="main-section" class="font-sans">
+  <section id="main-section" class="font-sans container mx-auto p-8">
     <p>
-        <form id="form">
-            <input type="text" id="query" name="query">
+        <form id="form" class="flex">
+            <input type="text" id="query" name="query" placeholder="Search words in Shakespeare work" class="border-2 flex-1 p-3 text-lg">
         </form>
     </p>
-    <p >Number of results: <b id="resutls-count"></b></p>
+    <p >Number of results: <span id="resutls-count" class="font-[AmazonEmber-Bold]">0</span></p>
     <p>
         <table id="table">
           <tbody id="table-body"></tbody>
